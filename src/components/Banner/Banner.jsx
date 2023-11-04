@@ -11,11 +11,13 @@ const Banner = () => {
       />
       {/* overlay */}
       <div className="h-screen absolute left-0 top-0 bg-[#160202]/90 w-full"></div>
-      <div className="absolute lg:top-56 w-full">
+      <div className="absolute top-28 md:top-44 lg:top-56 w-full px-6 lg:px-0">
+
         {/* content */}
-       <div className="flex justify-evenly  items-start">
-       <div className="w-[500px]">
-          <TypeAnimation className=""
+       <div className="flex flex-col justify-evenly items-center gap-4  md:items-start md:flex-row md:gap-0">
+        {/* hidden on tablet and mobile */}
+       <div className="hidden w-[500px] lg:block">
+          <TypeAnimation 
             sequence={[
               "Find the talents for Web dev.",
               1000, // wait 1s before replacing "Mice" with "Hamsters"
@@ -28,14 +30,18 @@ const Banner = () => {
             ]}
             wrapper="span"
             speed={50}
-            style={{ fontSize: "4rem", display: "inline-block" }}
+            style={{ fontSize: "4rem", fontWeight:"bold", display: "inline-block" }}
             repeat={Infinity}
           />
           <p>Unlock your potential with quality job & earn from world leading brands & co.</p>
         </div>
+        <div className="space-y-4 lg:hidden">
+            <h1 className="text-4xl md:text-5xl">Find the talents for any job.</h1>
+            <p>Unlock your potential with quality job & earn from world leading brands & co.</p>
+        </div>
         {/* lottie */}
         <div className="">
-            <Lottie className="w-96"  animationData={bannerAnimatoin} loop={true}/>
+            <Lottie className=" md:w-72 lg:w-96"  animationData={bannerAnimatoin} loop={true}/>
         </div>
        </div>
       </div>

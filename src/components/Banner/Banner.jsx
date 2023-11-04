@@ -11,7 +11,7 @@ const Banner = () => {
       />
       {/* overlay */}
       <div className="h-screen absolute left-0 top-0 bg-[#160202]/90 w-full"></div>
-      <div className="absolute top-28 md:top-44 lg:top-56 w-full px-6 lg:px-0">
+      <div className="absolute top-24 md:top-44 lg:top-56 w-full px-6 lg:px-0">
 
         {/* content */}
        <div className="flex flex-col justify-evenly items-center gap-4  md:items-start md:flex-row md:gap-0">
@@ -25,12 +25,12 @@ const Banner = () => {
               1000,
               "Find the talents for Web design.",
               1000,
-              "Find the talents for Vidoe editing",
+              "Find the talents for Video editing",
               1000,
             ]}
             wrapper="span"
             speed={50}
-            style={{ fontSize: "4rem", fontWeight:"bold", display: "inline-block" }}
+            style={{ fontSize: "3.5rem", fontWeight:"bold", display: "inline-block" }}
             repeat={Infinity}
           />
           <p>Unlock your potential with quality job & earn from world leading brands & co.</p>
@@ -41,7 +41,7 @@ const Banner = () => {
         </div>
         {/* lottie */}
         <div className="">
-            <Lottie className=" md:w-72 lg:w-96"  animationData={bannerAnimatoin} loop={true}/>
+            <Lottie className=" md:w-72 lg:w-[550px]"  animationData={bannerAnimatoin} loop={true}/>
         </div>
        </div>
       </div>

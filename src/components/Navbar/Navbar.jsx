@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineLogin } from "react-icons/ai";
-import logo from "../../assets/logo.png"
+import logo from "../../assets/images/logo.png"
 const Navbar = () => {
     const navLinks = (
       <>

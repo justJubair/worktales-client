@@ -1,4 +1,5 @@
 import PropTypes from "prop-types"
+import { Link } from "react-router-dom";
 const SingleJob = ({job}) => {
     return(
         <div className="card w-full bg-base-100 shadow-xl">
@@ -10,7 +11,7 @@ const SingleJob = ({job}) => {
     <p><span className="font-medium">Description:</span> {job.description}</p>
     </div>
     <div className="card-actions justify-end">
-      <button className="btn bg-[#4b1818]">Bid Now</button>
+      <Link to={`/jobDetails/${job._id}`} className="btn bg-[#4b1818] hover:bg-[#350c0c]">Bid Now</Link>
     </div>
   </div>
 </div>

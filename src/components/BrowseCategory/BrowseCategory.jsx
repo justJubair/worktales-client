@@ -26,9 +26,10 @@ const BrowseCategory = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto">
-      <Tabs className={"text-center my-16"}>
-        <TabList  onClick={handleCategory}>
+    <div className="max-w-screen-xl mx-auto mt-10">
+      <h2 className="text-center my-6 text-3xl md:text-4xl font-bold">Our <span className="text-[#7e3838]">Job</span> Categories</h2>
+      <Tabs className={"text-center"}>
+        <TabList className={"mb-6"}  onClick={handleCategory}>
           <Tab ><h3 className="bg-[#4b1818] text-white rounded-md px-4 py-2">Web Development</h3></Tab>
           <Tab><h3 className="bg-[#4b1818] text-white rounded-md px-4 py-2">Digital Marketing</h3></Tab>
           <Tab><h3 className="bg-[#4b1818] text-white rounded-md px-4 py-2">Graphics Design</h3></Tab>
@@ -38,7 +39,7 @@ const BrowseCategory = () => {
           .fill(0)
           .map((_, idx) => (
             <TabPanel key={idx}>
-            <div className="grid gap-4 grid-cols-1 mt-10 md:grid-cols-2">
+            <div className="grid gap-4 grid-cols-1 md:grid-cols-2 px-4 lg:px-0">
 
               {jobs?.map((job) => (
                 <SingleJob key={job._id} job={job} />

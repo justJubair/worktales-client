@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery} from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
@@ -6,6 +6,9 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const JobDetails = () => {
+
+ 
+ 
   const { id } = useParams();
   const { user } = useAuth();
   const axios = useAxios();
@@ -17,6 +20,8 @@ const JobDetails = () => {
     queryKey: ["job"],
     queryFn: getJob,
   });
+
+ 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -24,7 +29,9 @@ const JobDetails = () => {
       </div>
     );
   }
+  
 
+ 
   const handleBid =e=>{
     e.preventDefault()
     const toastId = toast.loading("Adding your bid..");
@@ -34,7 +41,12 @@ const JobDetails = () => {
     const userEmail = user?.email;
     const employerEmail = job?.employer_email;
     const title = job?.job_title
+    
+    // check if user email and job owner email matches
+   
+    console.log(userEmail, employerEmail)
     const yourBid = { price, deadline, userEmail, employerEmail, status: "pending", title}
+
     axios.post("/bids", yourBid)
     .then(res=>{
      if(res.data.insertedId){
@@ -106,8 +118,8 @@ const JobDetails = () => {
                 <input
                   type="email"
                   placeholder="email"
-                  defaultValue={user?.email}
-                  name="email"
+                  value={user?.email || ""} 
+                 
                   className="input input-bordered"
                   required
                   readOnly
@@ -119,9 +131,9 @@ const JobDetails = () => {
                 </label>
                 <input
                   type="email"
-                  defaultValue={job?.employer_email}
+                  value={job?.employer_email || ""}
                   placeholder="emplyers email"
-                  name="email"
+                
                   className="input input-bordered"
                   readOnly
                   required
@@ -131,6 +143,7 @@ const JobDetails = () => {
                 <button
                   type="submit"
                   className="btn bg-[#4b1818] hover:bg-[#240707]"
+                  disabled={user?.email === job?.employer_email ? true : false}
                 >
                   Bid on this project
                 </button>

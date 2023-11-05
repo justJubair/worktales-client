@@ -2,9 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const JobDetails = () => {
   const { id } = useParams();
+  const { user } = useAuth();
   const axios = useAxios();
   const getJob = async () => {
     const res = await axios.get(`/jobs/${id}`);
@@ -16,18 +19,34 @@ const JobDetails = () => {
   });
   if (isLoading) {
     return (
-      <div>
-        <p>loading...</p>
+      <div className="flex items-center justify-center h-screen">
+        <span className="loading loading-bars loading-lg"></span>
       </div>
     );
   }
-  console.log(job);
+
+  const handleBid =e=>{
+    e.preventDefault()
+    const toastId = toast.loading("Adding your bid..");
+    const form = e.target;
+    const price = form.price.value;
+    const deadline = form.deadline.value;
+    const userEmail = user?.email;
+    const employerEmail = job?.employer_email;
+    const title = job?.job_title
+    const yourBid = { price, deadline, userEmail, employerEmail, status: "pending", title}
+    axios.post("/bids", yourBid)
+    .then(res=>{
+     if(res.data.insertedId){
+      toast.success("Your bid added", {id: toastId})
+     }
+    })    
+  }
   return (
     <>
-   
-    <Navbar/>
+      <Navbar />
       {/* banner */}
-     
+
       <div className="w-full h-screen md:h-96">
         <img
           className="h-full w-full object-cover"
@@ -37,7 +56,7 @@ const JobDetails = () => {
         <div className="absolute top-0 w-full h-full md:h-96 bg-[#1c0606]/90"></div>
         <div className="absolute w-full px-4 top-20  lg:w-1/2 md:top-24 lg:px-0 lg:left-[355px]">
           <h2 className="text-center mb-4 text-3xl font-medium">
-            {job.job_title}
+            {job?.job_title}
           </h2>
           <p className="mb-4 text-sm md:text-base">{job.long_description}</p>
           <div className="flex items-center justify-center gap-4">
@@ -51,67 +70,75 @@ const JobDetails = () => {
         </div>
       </div>
       {/* form */}
-        <div className="max-w-screen-lg mx-auto  my-10">
-            <h1 className="text-center text-2xl font-medium">Place Your Bid</h1>
-          <div className="w-full">
-            <div className="card  w-full shadow-xl bg-base-100">
-              <form className="card-body">
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Price</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="price"
-                    className="input input-bordered"
-                    name="price"
-                    required
-                  />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Deadline</span>
-                  </label>
-                  <input
-                    type="date"
-                    placeholder="price"
-                    name="date"
-                    className="input input-bordered"
-                    required
-                  />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="email"
-                    name="email"
-                    className="input input-bordered"
-                    required
-                  />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Employers Email</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="emplyers email"
-                    name="email"
-                    className="input input-bordered"
-                    required
-                  />
-                </div>
-                <div className="form-control mt-6">
-                  <button type="submit" className="btn bg-[#4b1818] hover:bg-[#240707]">Bid on this project</button>
-                </div>
-              </form>
-            </div>
+      <div className="max-w-screen-lg mx-auto  my-10">
+        <h1 className="text-center text-2xl font-medium">Place Your Bid</h1>
+        <div className="w-full">
+          <div className="card  w-full shadow-xl bg-base-100">
+            <form onSubmit={handleBid} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Price</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="price"
+                  className="input input-bordered"
+                  name="price"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Deadline</span>
+                </label>
+                <input
+                  type="date"
+                  placeholder="price"
+                  name="deadline"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="email"
+                  defaultValue={user?.email}
+                  name="email"
+                  className="input input-bordered"
+                  required
+                  readOnly
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Employers Email</span>
+                </label>
+                <input
+                  type="email"
+                  defaultValue={job?.employer_email}
+                  placeholder="emplyers email"
+                  name="email"
+                  className="input input-bordered"
+                  readOnly
+                  required
+                />
+              </div>
+              <div className="form-control mt-6">
+                <button
+                  type="submit"
+                  className="btn bg-[#4b1818] hover:bg-[#240707]"
+                >
+                  Bid on this project
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-   
+      </div>
     </>
   );
 };

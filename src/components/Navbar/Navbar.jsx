@@ -1,7 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineLogin } from "react-icons/ai";
 import logo from "../../assets/images/logo.png"
+import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
+const {user, logOut} = useAuth()
+const handleLogout =()=>{
+  logOut()
+  .then()
+  .catch(error=>{
+    console.log(error)
+  })
+}
     const navLinks = (
       <>
         <li className="rounded-lg hover:bg-[#300b0b]">
@@ -101,7 +110,18 @@ const Navbar = () => {
         <div className="hidden lg:block">
           <ul className="menu menu-horizontal px-1 space-x-4 text-white">{navLinks}</ul>
         </div>
-        <div>
+        {
+          user ? <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src={user?.photoURL} />
+            </div>
+          </label>
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+            <li><a>{user?.displayName}</a></li>
+            <li onClick={handleLogout}><a>Logout</a></li>
+          </ul>
+          </div> : <div>
           <Link
             to="/login"
             className="btn text-xl bg-[#4b1818] text-white hover:bg-[#300b0b]"
@@ -109,6 +129,8 @@ const Navbar = () => {
             <AiOutlineLogin />
           </Link>
         </div>
+        }
+        
       </div>
     );
   };

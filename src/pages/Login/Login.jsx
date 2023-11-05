@@ -17,7 +17,7 @@ const Login = () => {
     login(email, password)
       .then((result) => {
         if (result.user) {
-          toast.success("User created", { id: toastId });
+          toast.success("Logged in", { id: toastId });
           navigate("/");
         }
       })
@@ -79,7 +79,7 @@ const Login = () => {
                   </button>
                 </div>
               </form>
-              <div className="flex items-center justify-between p-4">
+              <div className="flex items-center justify-between px-4 pb-2">
                 <p>New to Worktales?</p>
                 <Link to="/register" className="btn btn-link">
                   Register Now

@@ -36,7 +36,7 @@ const Login = () => {
      <div className="hero-content lg:gap-10 items-center flex-col lg:flex-row">
         <div className="text-center lg:text-left">
          
-          <div className="hidden w-48 lg:block">
+          <div className="hidden w-96 lg:block">
             <Lottie animationData={loginAnimation} loop={true} />
           </div>
         </div>

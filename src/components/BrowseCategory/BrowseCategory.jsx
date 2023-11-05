@@ -30,9 +30,9 @@ const BrowseCategory = () => {
       <h2 className="text-center my-6 text-3xl md:text-4xl font-bold">Our <span className="text-[#7e3838]">Job</span> Categories</h2>
       <Tabs className={"text-center"}>
         <TabList className={"mb-6"}  onClick={handleCategory}>
-          <Tab ><h3 className="bg-[#4b1818] text-white rounded-md px-4 py-2">Web Development</h3></Tab>
-          <Tab><h3 className="bg-[#4b1818] text-white rounded-md px-4 py-2">Digital Marketing</h3></Tab>
-          <Tab><h3 className="bg-[#4b1818] text-white rounded-md px-4 py-2">Graphics Design</h3></Tab>
+          <Tab>Web Development</Tab>
+          <Tab>Digital Marketing</Tab>
+          <Tab>Graphics Design</Tab>
         </TabList>
 
         {Array(3)

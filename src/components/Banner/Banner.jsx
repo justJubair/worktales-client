@@ -10,7 +10,7 @@ const Banner = () => {
         alt=""
       />
       {/* overlay */}
-      <div className="h-screen absolute left-0 top-0 bg-[#160202]/90 w-full"></div>
+      <div className="h-full absolute left-0 top-0 bg-[#160202]/90 w-full"></div>
       <div className="absolute top-24 md:top-44 lg:top-56 w-full px-6 lg:px-0">
 
         {/* content */}

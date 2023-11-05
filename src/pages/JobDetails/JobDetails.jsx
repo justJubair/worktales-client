@@ -24,23 +24,23 @@ const JobDetails = () => {
   return (
     <div>
       {/* banner */}
-      <div className="w-full h-96">
+      <div className="w-full h-screen md:h-96">
         <img
           className="h-full w-full object-cover"
           src="https://i.ibb.co/bsqNKyj/pexels-vlada-karpovich-4050320.jpg"
           alt="laptop"
         />
-        <div className="absolute top-0 w-full h-96 bg-[#1c0606]/90"></div>
-        <div className="absolute w-1/2 lg:top-24 lg:left-[355px]">
+        <div className="absolute top-0 w-full h-full md:h-96 bg-[#1c0606]/90"></div>
+        <div className="absolute w-full px-4 top-20  lg:w-1/2 md:top-24 lg:px-0 lg:left-[355px]">
           <h2 className="text-center mb-4 text-3xl font-medium">
             {job.job_title}
           </h2>
-          <p className="mb-4">{job.long_description}</p>
+          <p className="mb-4 text-sm md:text-base">{job.long_description}</p>
           <div className="flex items-center justify-center gap-4">
-            <p className="font-medium px-4 py-2 rounded-md bg-[#280808]">
+            <p className="font-medium px-4 py-2 rounded-md bg-[#280808] text-xs md:text-base">
               Deadline: {job.deadline}
             </p>
-            <p className="font-medium px-4 py-2 rounded-md bg-[#280808]">
+            <p className="font-medium px-4 py-2 rounded-md bg-[#280808] text-xs md:text-base">
               Price: {job.price_range}
             </p>
           </div>

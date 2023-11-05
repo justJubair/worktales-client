@@ -14,6 +14,16 @@ const Navbar = () => {
             Home
           </NavLink>
         </li>
+        <li className="rounded-lg hover:bg-[#300b0b]">
+          <NavLink
+            to="/addJob"
+            className={({ isActive }) =>
+              isActive ? "bg-[#4b1818] text-white" : undefined
+            }
+          >
+            Add Job
+          </NavLink>
+        </li>
         <li  className="rounded-lg hover:bg-[#300b0b]">
           <NavLink
             to="/myPostedJobs"

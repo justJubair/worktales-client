@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import { useParams } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -22,8 +23,11 @@ const JobDetails = () => {
   }
   console.log(job);
   return (
-    <div>
+    <>
+   
+    <Navbar/>
       {/* banner */}
+     
       <div className="w-full h-screen md:h-96">
         <img
           className="h-full w-full object-cover"
@@ -107,7 +111,8 @@ const JobDetails = () => {
             </div>
           </div>
         </div>
-    </div>
+   
+    </>
   );
 };
 export default JobDetails;

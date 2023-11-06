@@ -3,17 +3,19 @@ import bannerVideo from "../../assets/bannerAddJob.mp4";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import useAxios from "../../hooks/useAxios";
 const AddJob = () => {
   const [category, setCategory] = useState("webDevelopment")
   const { user } = useAuth();
+  const axios = useAxios()
   const handleAddJob = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const deadline = form.deadline.value;
     const email = user?.email;
-    const minPrice = form.minPrice.value;
-    const maxPrice = form.maxPrice.value;
+    const minPrice = parseInt(form?.minPrice?.value);
+    const maxPrice = parseInt(form?.maxPrice?.value);
     const description = form.description.value;
     // form validation
     if(minPrice < 1){
@@ -25,13 +27,18 @@ const AddJob = () => {
     if(maxPrice === minPrice){
       return toast.error("Invalid price")
     }
-    if(maxPrice < minPrice){
+    if(minPrice > maxPrice){
       return toast.error("Invalid price")
     }
     // validation ENDS
     const price_range = `$${minPrice} - $${maxPrice} per hour`
-    const newAddedJob = {title, deadline, email, price_range, description, category}
-    console.log(newAddedJob)
+    const newAddedJob = {job_title: title, deadline, email, price_range, description, category}
+    axios.post("/jobs", newAddedJob)
+    .then(result=>{
+      if(result.data.insertedId){
+        toast.success("You've added a job successfully")
+      }
+    })
   };
   const handleCategory =e=>{
     setCategory(e.target.value)

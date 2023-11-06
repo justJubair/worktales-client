@@ -69,7 +69,7 @@ const JobDetails = () => {
           <h2 className="text-center mb-4 text-3xl font-medium">
             {job?.job_title}
           </h2>
-          <p className="mb-4 text-sm md:text-base">{job.long_description}</p>
+          <p className="mb-4 text-sm md:text-base text-center">{job.long_description || job.description}</p>
           <div className="flex items-center justify-center gap-4">
             <p className="font-medium px-4 py-2 rounded-md bg-[#280808] text-xs md:text-base">
               Deadline: {job.deadline}

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 const JobDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
+  const navigate = useNavigate()
   const axios = useAxios();
   const getJob = async () => {
     const res = await axios.get(`/jobs/${id}`);
@@ -50,6 +51,7 @@ const JobDetails = () => {
     axios.post("/bids", yourBid).then((res) => {
       if (res.data.insertedId) {
         toast.success("Your bid added", { id: toastId });
+        navigate("/myBids")
       }
     });
   };

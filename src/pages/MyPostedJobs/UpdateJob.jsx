@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 
-const JobDetails = () => {
+const UpdateJob = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const axios = useAxios();
@@ -154,4 +154,4 @@ const JobDetails = () => {
     </>
   );
 };
-export default JobDetails;
+export default UpdateJob;

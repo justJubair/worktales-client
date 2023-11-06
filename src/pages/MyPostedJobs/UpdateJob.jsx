@@ -1,23 +1,26 @@
-import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import { useParams } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import GeneralNav from "../../components/Navbar/GeneralNav";
+import { useEffect, useState } from "react";
 
 const UpdateJob = () => {
+  const [job, setJob] = useState({})
+  const [category, setCategory] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
   const { id } = useParams();
   const { user } = useAuth();
   const axios = useAxios();
-  const getJob = async () => {
-    const res = await axios.get(`/jobs/${id}`);
-    return res.data;
-  };
-  const { data: job, isLoading } = useQuery({
-    queryKey: ["job"],
-    queryFn: getJob,
-  });
 
+
+  useEffect(()=>{
+    axios.get(`/jobs/${id}`)
+    .then(res=>{
+      setJob(res.data)
+      setIsLoading(false)
+    })
+  },[axios, id, ])
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -25,78 +28,35 @@ const UpdateJob = () => {
       </div>
     );
   }
-
   const handleBid = (e) => {
     e.preventDefault();
-    const toastId = toast.loading("Adding your bid..");
-    const form = e.target;
-    const price = form.price.value;
-    const deadline = form.deadline.value;
-    const userEmail = user?.email;
-    const employerEmail = job?.employer_email;
-    const title = job?.job_title;
-
-    // check if user email and job owner email matches
-
-    const yourBid = {
-      price,
-      deadline,
-      userEmail,
-      employerEmail,
-      status: "pending",
-      title,
-    };
-
-    axios.post("/bids", yourBid).then((res) => {
-      if (res.data.insertedId) {
-        toast.success("Your bid added", { id: toastId });
-      }
-    });
   };
+
+  const handleCategory=e=>{
+   
+    setCategory(e.target.value)
+  }
+ 
   return (
     <>
-      <Navbar />
-      {/* banner */}
-
-      <div className="w-full h-screen md:h-96">
-        <img
-          className="h-full w-full object-cover"
-          src="https://i.ibb.co/bsqNKyj/pexels-vlada-karpovich-4050320.jpg"
-          alt="laptop"
-        />
-        <div className="absolute top-0 w-full h-full md:h-96 bg-[#1c0606]/90"></div>
-        <div className="absolute w-full px-4 top-20  lg:w-1/2 md:top-24 lg:px-0 lg:left-[355px]">
-          <h2 className="text-center mb-4 text-3xl font-medium">
-            {job?.job_title}
-          </h2>
-          <p className="mb-4 text-sm md:text-base text-center">
-            {job.long_description || job.description}
-          </p>
-          <div className="flex items-center justify-center gap-4">
-            <p className="font-medium px-4 py-2 rounded-md bg-[#280808] text-xs md:text-base">
-              Deadline: {job.deadline}
-            </p>
-            <p className="font-medium px-4 py-2 rounded-md bg-[#280808] text-xs md:text-base">
-              Price: {job.price_range}
-            </p>
-          </div>
-        </div>
-      </div>
+      <GeneralNav/>
+      
       {/* form */}
       <div className="max-w-screen-lg mx-auto  my-10">
-        <h1 className="text-center text-2xl font-medium">Place Your Bid</h1>
+        <h1 className="text-center text-2xl font-medium">Update Your Posted Job</h1>
         <div className="w-full">
           <div className="card  w-full shadow-xl bg-base-100">
             <form onSubmit={handleBid} className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Price</span>
+                  <span className="label-text">Job Title</span>
                 </label>
                 <input
                   type="text"
-                  placeholder="price"
+                  placeholder="job title"
                   className="input input-bordered"
-                  name="price"
+                  name="title"
+                  defaultValue={job?.job_title || ""}
                   required
                 />
               </div>
@@ -106,6 +66,7 @@ const UpdateJob = () => {
                 </label>
                 <input
                   type="date"
+                  defaultValue={job?.deadline}
                   placeholder="price"
                   name="deadline"
                   className="input input-bordered"
@@ -127,14 +88,49 @@ const UpdateJob = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Employers Email</span>
+                  <span className="label-text">Choose a category</span>
+                </label>
+                <select defaultValue={job?.category} onChange={handleCategory} className="input input-bordered">
+                  <option value="webDevelopment">Web Development</option>
+                  <option value="digitalMarketing">Digital Marketing</option>
+                  <option value="graphicsDesigning">Graphics Design</option>
+                </select>
+              </div>
+              <div className="flex flex-col  gap-4 md:flex-row">
+                <div className="form-control flex-1">
+                  <label className="label">
+                    <span className="label-text">Minimum Price</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="min price"
+                    name="minPrice"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control flex-1">
+                  <label className="label">
+                    <span className="label-text">Maximum Price</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="maxPrice"
+                    placeholder="max price"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Description</span>
                 </label>
                 <input
-                  type="email"
-                  value={job?.employer_email || ""}
+                  type="text"
+                  defaultValue={job?.description || ""}
                   placeholder="emplyers email"
                   className="input input-bordered"
-                  readOnly
                   required
                 />
               </div>
@@ -142,9 +138,8 @@ const UpdateJob = () => {
                 <button
                   type="submit"
                   className="btn bg-[#4b1818] hover:bg-[#240707]"
-                  disabled={user?.email === job?.employer_email ? true : false}
                 >
-                  Bid on this project
+                 update
                 </button>
               </div>
             </form>

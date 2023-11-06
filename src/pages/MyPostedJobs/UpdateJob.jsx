@@ -174,7 +174,7 @@ const UpdateJob = () => {
               <div className="form-control mt-6">
                 <button
                   type="submit"
-                  className="btn bg-[#4b1818] hover:bg-[#240707]"
+                  className="btn text-white bg-[#4b1818] hover:bg-[#240707]"
                 >
                  update
                 </button>

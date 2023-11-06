@@ -59,8 +59,8 @@ const AddJob = () => {
         ></video>
         <div className="h-72 absolute left-0 top-0 bg-[#160202]/80 w-full"></div>
         <div className="text-center lg:w-1/2 absolute top-20 px-4 lg:top-28 lg:left-80 lg:px-0">
-          <h2 className="text-4xl font-bold mb-3">Create a Job</h2>
-          <p>
+          <h2 className="text-4xl font-bold mb-3 text-gray-200">Create a Job</h2>
+          <p className="text-gray-300">
             Boosting employment means backing entrepreneurship, enhancing
             education, driving innovation, aiding small businesses, and
             developing infrastructure. These steps spur economic growth, lower
@@ -162,7 +162,7 @@ const AddJob = () => {
               <div className="form-control mt-6">
                 <button
                   type="submit"
-                  className="btn bg-[#4b1818] hover:bg-[#240707]"
+                  className="btn text-white bg-[#4b1818] hover:bg-[#240707]"
                 >
                   Add job
                 </button>

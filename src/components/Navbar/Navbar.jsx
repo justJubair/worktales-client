@@ -67,7 +67,7 @@ const handleLogout =()=>{
     );
     return (
       <div className="absolute bg-transparent flex w-full items-center justify-between p-4 z-[100]">
-        <div className="lg:hidden">
+        <div className="z-[100] lg:hidden">
           <input id="my-drawer" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
             {/* Page content here */}

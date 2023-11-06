@@ -27,7 +27,7 @@ const MyPostedJobs = () => {
   return (
     <>
       <GeneralNav />
-      <div>
+      <div className="max-w-screen-xl mx-auto grid gap-6 grid-cols-1 md:grid-cols-2 px-2 lg:px-0">
         {userPostedJobs?.map((job) => (
           <PostedJobCard key={job._id} job={job} />
         ))}

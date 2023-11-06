@@ -8,7 +8,7 @@ const PostedJobCard = ({ job }) => {
         <h2 className="text-xl font-bold text-center text-[#a55b5b]">
           {job.job_title}
         </h2>
-        <div className="text-start space-y-2 mt-6">
+        <div className="text-start space-y-2 mt-6 flex-1">
           <p className="flex items-center gap-2 font-medium">
             <AiOutlineSchedule size={28} /> {job.deadline}
           </p>
@@ -19,13 +19,14 @@ const PostedJobCard = ({ job }) => {
             <span className="font-medium">Description:</span> {job.description}
           </p>
         </div>
-        <div className="card-actions justify-end">
+        <div className="card-actions justify-end mt-4">
           <Link
             to={`/updateJob/${job._id}`}
-            className="btn bg-[#4b1818] hover:bg-[#350c0c]"
+            className="btn text-white bg-[#4b1818] hover:bg-[#350c0c]"
           >
             Update
           </Link>
+          <button className="btn">Delete</button>
         </div>
       </div>
     </div>

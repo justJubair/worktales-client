@@ -66,8 +66,8 @@ const GeneralNav = () => {
       </>
     );
     return (
-      <div className=" bg-transparent flex w-full items-center justify-between p-4 z-[100]">
-        <div className="lg:hidden">
+      <div className=" bg-[#4b1818] flex w-full items-center justify-between p-4 z-[100]">
+        <div className="z-[100] lg:hidden">
           <input id="my-drawer" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
             {/* Page content here */}

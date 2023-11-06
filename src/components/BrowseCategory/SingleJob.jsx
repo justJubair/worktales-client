@@ -12,7 +12,7 @@ const SingleJob = ({job}) => {
     <p><span className="font-medium">Description:</span> {job.description}</p>
     </div>
     <div className="card-actions justify-end">
-      <Link to={`/jobDetails/${job._id}`} className="btn bg-[#4b1818] hover:bg-[#350c0c]">Bid Now</Link>
+      <Link to={`/jobDetails/${job._id}`} className=" btn text-white bg-[#4b1818] hover:bg-[#350c0c]">Bid Now</Link>
     </div>
   </div>
 </div>

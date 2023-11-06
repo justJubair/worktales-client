@@ -30,14 +30,14 @@ const Banner = () => {
             ]}
             wrapper="span"
             speed={50}
-            style={{ fontSize: "3.5rem", fontWeight:"bold", display: "inline-block" }}
+            style={{ fontSize: "3.5rem",color:"white", fontWeight:"bold", display: "inline-block" }}
             repeat={Infinity}
           />
-          <p>Unlock your potential with quality job & earn from world leading brands & co.</p>
+          <p className="text-white">Unlock your potential with quality job & earn from world leading brands & co.</p>
         </div>
         <div className="space-y-4 lg:hidden">
-            <h1 className="text-4xl md:text-5xl">Find the talents for any job.</h1>
-            <p>Unlock your potential with quality job & earn from world leading brands & co.</p>
+            <h1 className="text-4xl text-white md:text-5xl">Find the talents for any job.</h1>
+            <p className="text-white">Unlock your potential with quality job & earn from world leading brands & co.</p>
         </div>
         {/* lottie */}
         <div className="">

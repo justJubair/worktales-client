@@ -3,11 +3,11 @@ import GeneralNav from "../../components/Navbar/GeneralNav";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 
-const MyBids = () => {
+const BidRequests = () => {
   const { user } = useAuth();
   const axios = useAxios();
   const getUserBids = async () => {
-    const res = await axios.get(`/bids?userEmail=${user?.email}`);
+    const res = await axios.get(`/bids?employerEmail=${user?.email}`);
     return res.data;
   };
   const { data: bids, isLoading, refetch } = useQuery({
@@ -58,4 +58,4 @@ const MyBids = () => {
     </>
   );
 };
-export default MyBids;
+export default BidRequests;

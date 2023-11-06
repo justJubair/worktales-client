@@ -55,7 +55,7 @@ const GeneralNav = () => {
         </li>
         <li  className="rounded-lg hover:bg-[#300b0b]">
           <NavLink
-            to="/Bid Requests"
+            to="/bidRequests"
             className={({ isActive }) =>
               isActive ? "bg-[#4b1818] text-white" : undefined
             }

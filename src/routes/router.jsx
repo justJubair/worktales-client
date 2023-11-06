@@ -5,34 +5,38 @@ import JobDetails from "../pages/JobDetails/JobDetails";
 import AddJob from "../pages/AddJob/AddJob";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import MyPostedJobs from "../pages/MyPostedJobs/MyPostedJobs";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
-        {
-            path: "/",
-            element: <Home/>
-        },
-        {
-          path: "/jobDetails/:id",
-          element: <JobDetails/>
-        },
-        {
-          path: "/addJob",
-          element: <AddJob/>
-        },
-        {
-          path: "/login",
-          element: <Login/>
-        },
-        {
-          path: "/register",
-          element: <Register/>
-        }
-        
-    ]
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/jobDetails/:id",
+        element: <JobDetails />,
+      },
+      {
+        path: "/addJob",
+        element: <AddJob />,
+      },
+      {
+        path: "/myPostedJobs",
+        element: <MyPostedJobs/>
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+    ],
   },
 ]);
 

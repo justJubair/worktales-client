@@ -1,7 +1,7 @@
-const MyBid = () => {
+const MyBids = () => {
     return(
         <div>
              <p> HELLO I Am MyBid </p>
         </div>
     )}
-export default MyBid;
+export default MyBids;

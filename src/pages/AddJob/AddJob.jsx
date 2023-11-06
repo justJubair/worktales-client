@@ -32,7 +32,7 @@ const AddJob = () => {
     }
     // validation ENDS
     const price_range = `$${minPrice} - $${maxPrice} per hour`
-    const newAddedJob = {job_title: title, deadline, email, price_range, description, category}
+    const newAddedJob = {job_title: title, deadline, employer_email: email, price_range, description, category}
     axios.post("/jobs", newAddedJob)
     .then(result=>{
       if(result.data.insertedId){

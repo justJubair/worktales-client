@@ -1,7 +1,52 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { AiOutlineSchedule, AiOutlineDollarCircle } from "react-icons/ai";
-const PostedJobCard = ({ job }) => {
+import useAxios from "../../hooks/useAxios";
+import Swal from "sweetalert2";
+const PostedJobCard = ({ job, refetch }) => {
+  const axios = useAxios();
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
+    },
+    buttonsStyling: false,
+  });
+  const handleDelete = () => {
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          axios.delete(`/jobs/${job?._id}`).then((res) => {
+            if (res.data.deletedCount > 0) {
+              swalWithBootstrapButtons.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              refetch();
+            }
+          });
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your imaginary file is safe :)",
+            icon: "error",
+          });
+        }
+      });
+  };
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <div className="card-body">
@@ -26,7 +71,9 @@ const PostedJobCard = ({ job }) => {
           >
             Update
           </Link>
-          <button className="btn">Delete</button>
+          <button onClick={handleDelete} className="btn">
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -35,5 +82,6 @@ const PostedJobCard = ({ job }) => {
 
 PostedJobCard.propTypes = {
   job: PropTypes.object,
+  refetch: PropTypes.func,
 };
 export default PostedJobCard;

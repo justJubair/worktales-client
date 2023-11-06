@@ -4,4 +4,4 @@ const MyBids = () => {
              <p> HELLO I Am MyBid </p>
         </div>
     )}
-export default MyBids;
+export default MyBids; 

@@ -7,12 +7,22 @@ import SingleJob from "./SingleJob";
 const BrowseCategory = () => {
   const [category, setCategory] = useState("webDevelopment");
   const [jobs, setjobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
   const axios = useAxios();
   useEffect(() => {
     axios.get(`/jobs?category=${category}`).then((res) => {
       setjobs(res.data);
+      setIsLoading(false)
     });
   }, [axios, category]);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <span className="loading loading-bars loading-lg"></span>
+      </div>
+    );
+  }
 
   const handleCategory = (e) => {
     const selectedCategory = e.target.textContent;

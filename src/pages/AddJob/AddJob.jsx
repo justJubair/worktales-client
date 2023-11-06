@@ -4,9 +4,11 @@ import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import useAxios from "../../hooks/useAxios";
+import { useNavigate } from "react-router-dom";
 const AddJob = () => {
   const [category, setCategory] = useState("webDevelopment")
   const { user } = useAuth();
+  const navigate = useNavigate()
   const axios = useAxios()
   const handleAddJob = (e) => {
     e.preventDefault();
@@ -37,6 +39,7 @@ const AddJob = () => {
     .then(result=>{
       if(result.data.insertedId){
         toast.success("You've added a job successfully")
+        navigate("/myPostedJobs")
       }
     })
   };

@@ -28,8 +28,42 @@ const UpdateJob = () => {
       </div>
     );
   }
-  const handleBid = (e) => {
+ 
+  const defaultMinPrice = job?.price_range.split(" ")[0].split("$")[1]
+  const defaultMaxPrice = job?.price_range.split(" ")[2].split("$")[1]
+  const handleUpdate = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const deadline = form.deadline.value;
+    const updatedCategory = category || job?.category;
+    const minPrice = parseInt(form?.minPrice?.value);
+    const maxPrice = parseInt(form?.maxPrice?.value);
+    const description = form.description.value;
+
+     // form validation
+     if(minPrice < 1){
+      return toast.error("Invalid price")
+    }
+    if(maxPrice <1){
+      return toast.error("Invalid price")
+    }
+    if(maxPrice === minPrice){
+      return toast.error("Invalid price")
+    }
+    if(minPrice > maxPrice){
+      return toast.error("Invalid price")
+    }
+    // validation ENDS
+    const price_range = `$${minPrice} - $${maxPrice} per hour`
+    const updatedJob = {title, deadline, price_range, description, updatedCategory}
+    axios.put(`/jobs/${id}`, updatedJob)
+    .then(res=>{
+      if(res.data.modifiedCount> 0){
+        toast.success("Job updated successfully")
+      }
+    })
+    
   };
 
   const handleCategory=e=>{
@@ -46,7 +80,7 @@ const UpdateJob = () => {
         <h1 className="text-center text-2xl font-medium">Update Your Posted Job</h1>
         <div className="w-full">
           <div className="card  w-full shadow-xl bg-base-100">
-            <form onSubmit={handleBid} className="card-body">
+            <form onSubmit={handleUpdate} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Job Title</span>
@@ -104,6 +138,7 @@ const UpdateJob = () => {
                   <input
                     type="number"
                     placeholder="min price"
+                    defaultValue={defaultMinPrice}
                     name="minPrice"
                     className="input input-bordered"
                     required
@@ -117,6 +152,7 @@ const UpdateJob = () => {
                     type="number"
                     name="maxPrice"
                     placeholder="max price"
+                   defaultValue={defaultMaxPrice}
                     className="input input-bordered"
                     required
                   />
@@ -131,6 +167,7 @@ const UpdateJob = () => {
                   defaultValue={job?.description || ""}
                   placeholder="emplyers email"
                   className="input input-bordered"
+                  name="description"
                   required
                 />
               </div>

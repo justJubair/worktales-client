@@ -1,10 +1,40 @@
 import Navbar from "../../components/Navbar/Navbar";
 import bannerVideo from "../../assets/bannerAddJob.mp4";
 import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+import toast from "react-hot-toast";
 const AddJob = () => {
-  const {user} = useAuth()
-  const handleAddJob = e=>{
-    e.preventDefault()
+  const [category, setCategory] = useState("webDevelopment")
+  const { user } = useAuth();
+  const handleAddJob = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const deadline = form.deadline.value;
+    const email = user?.email;
+    const minPrice = form.minPrice.value;
+    const maxPrice = form.maxPrice.value;
+    const description = form.description.value;
+    // form validation
+    if(minPrice < 1){
+      return toast.error("Invalid price")
+    }
+    if(maxPrice <1){
+      return toast.error("Invalid price")
+    }
+    if(maxPrice === minPrice){
+      return toast.error("Invalid price")
+    }
+    if(maxPrice < minPrice){
+      return toast.error("Invalid price")
+    }
+    // validation ENDS
+    const price_range = `$${minPrice} - $${maxPrice} per hour`
+    const newAddedJob = {title, deadline, email, price_range, description, category}
+    console.log(newAddedJob)
+  };
+  const handleCategory =e=>{
+    setCategory(e.target.value)
   }
   return (
     <>
@@ -64,58 +94,67 @@ const AddJob = () => {
                 <input
                   type="email"
                   placeholder="email"
-                  value={user?.email || ""} 
-                 
+                  value={user?.email || ""}
                   className="input input-bordered"
                   required
                   readOnly
                 />
               </div>
-             <div className="flex flex-col  gap-4 md:flex-row">
-             <div className="form-control flex-1">
+              <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Minimum Price</span>
+                  <span className="label-text">Choose a category</span>
                 </label>
-                <input
-                  type="text"
-                 
-                  placeholder="min price"
-                
-                  className="input input-bordered"
-                 
-                  required
-                />
+                <select className="input input-bordered" onChange={handleCategory}>
+                  <option value="webDevelopment">Web Development</option>
+                  <option value="digitalMarketing">Digital Marketing</option>
+                  <option value="graphicsDesigning">Graphics Designing</option>
+                </select>
               </div>
-              <div className="form-control flex-1">
-                <label className="label">
-                  <span className="label-text">Maximum Price</span>
-                </label>
-                <input
-                  type="text"
-                 
-                  placeholder="max price"
-                
-                  className="input input-bordered"
-                 
-                  required
-                />
+              <div className="flex flex-col  gap-4 md:flex-row">
+                <div className="form-control flex-1">
+                  <label className="label">
+                    <span className="label-text">Minimum Price</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="min price"
+                    name="minPrice"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control flex-1">
+                  <label className="label">
+                    <span className="label-text">Maximum Price</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="maxPrice"
+                    placeholder="max price"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
               </div>
-             </div>
-             <div className="form-control">
+              <div className="form-control">
                 <label className="label">
                   <span className="label-text">Description</span>
                 </label>
-               <textarea name="description" className="input h-full px-4 pt-3 input-bordered" id="desc" cols="10" rows="5" placeholder="write a description.."></textarea>
-
-               
+                <textarea
+                  name="description"
+                  className="input h-full px-4 pt-3 input-bordered"
+                  id="desc"
+                  cols="10"
+                  rows="5"
+                  placeholder="write a description.."
+                ></textarea>
               </div>
               <div className="form-control mt-6">
                 <button
                   type="submit"
                   className="btn bg-[#4b1818] hover:bg-[#240707]"
-                
                 >
-                  Bid on this project
+                  Add job
                 </button>
               </div>
             </form>

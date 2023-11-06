@@ -44,7 +44,6 @@ const JobDetails = () => {
     
     // check if user email and job owner email matches
    
-    console.log(userEmail, employerEmail)
     const yourBid = { price, deadline, userEmail, employerEmail, status: "pending", title}
 
     axios.post("/bids", yourBid)

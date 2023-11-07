@@ -1,7 +1,7 @@
 import logo from "../../assets/images/logo.png"
 const Footer = () => {
     return(
-        <footer className="mt-28 footer p-10 bg-[#210303] text-white">
+        <footer className="mt-10 footer p-10 bg-[#210303] text-white">
         <aside>
          <img className="w-40" src={logo} alt="logo" />
           <p>WORKTALES<br/>Providing talents since 2023</p>

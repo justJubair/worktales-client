@@ -49,6 +49,7 @@ const AddJob = () => {
   return (
     <>
       <Navbar />
+      <div className="mb-24">
       <div className="w-full h-72">
         <video
           className="w-full h-full object-cover"
@@ -170,6 +171,7 @@ const AddJob = () => {
             </form>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

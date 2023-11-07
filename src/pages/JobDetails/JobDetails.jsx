@@ -60,7 +60,8 @@ const JobDetails = () => {
       <Navbar />
       {/* banner */}
 
-      <div className="w-full h-screen md:h-96">
+     <div className="mb-24">
+     <div className="w-full h-screen md:h-96">
         <img
           className="h-full w-full object-cover"
           src="https://i.ibb.co/bsqNKyj/pexels-vlada-karpovich-4050320.jpg"
@@ -153,6 +154,7 @@ const JobDetails = () => {
           </div>
         </div>
       </div>
+     </div>
     </>
   );
 };

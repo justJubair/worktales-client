@@ -14,7 +14,7 @@ const Banner = () => {
       <div className="absolute top-24 md:top-44 lg:top-56 w-full px-6 lg:px-0">
 
         {/* content */}
-       <div className="flex flex-col justify-evenly items-center gap-4  md:items-start md:flex-row md:gap-0">
+       <div className="flex flex-col justify-evenly items-center gap-4 px-4  md:items-start md:flex-row md:gap-0">
         {/* hidden on tablet and mobile */}
        <div className="hidden w-[500px] lg:block">
           <TypeAnimation 

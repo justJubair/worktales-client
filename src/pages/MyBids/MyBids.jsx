@@ -65,7 +65,7 @@ const MyBids = () => {
                 <td>{bid?.deadline}</td>
                 {bid?.status !== "pending" ? (
                   bid.status === "rejected" ? (
-                    <td>cancel</td>
+                    <td>canceled</td>
                   ) : bid.status === "accepted" ? (
                     <td>in progress</td>
                   ) : bid.status === "complete" ? (

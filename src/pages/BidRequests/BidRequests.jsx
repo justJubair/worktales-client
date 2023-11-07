@@ -4,8 +4,9 @@ import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import { AiOutlineCheckCircle, AiOutlineDelete } from "react-icons/ai";
 import toast from "react-hot-toast";
+import "react-step-progress-bar/styles.css";
+import { ProgressBar } from "react-step-progress-bar";
 const BidRequests = () => {
-    
   const { user } = useAuth();
   const axios = useAxios();
   const getUserBids = async () => {
@@ -32,34 +33,30 @@ const BidRequests = () => {
     refetch();
   }
   const handeReject = (_id) => {
-    const status = {status: "rejected"}
+    const status = { status: "rejected" };
     axios.patch(`/bids/${_id}`, status).then((res) => {
-      if(res.data.modifiedCount>0){
-        toast.success("Bid Rejected")
-        refetch()
-       
+      if (res.data.modifiedCount > 0) {
+        toast.success("Bid Rejected");
+        refetch();
       }
     });
-   
   };
-  const handleAccept=(_id)=>{
-    const status = {status: "accepted"}
-    axios.patch(`/bids/${_id}`, status)
-    .then(res=>{
-      if(res.data.modifiedCount>0){
-        toast.success("Bid Accepted")
-        refetch()
-       
+  const handleAccept = (_id) => {
+    const status = { status: "accepted" };
+    axios.patch(`/bids/${_id}`, status).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        toast.success("Bid Accepted");
+        refetch();
       }
-    })
-  }
+    });
+  };
   return (
     <>
       <GeneralNav />
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
-          <thead >
+          <thead>
             <tr>
               <th></th>
               <th>Job Title</th>
@@ -67,9 +64,7 @@ const BidRequests = () => {
               <th>Deadline</th>
               <th>Price</th>
               <th>Status</th>
-              <th>Accept</th>
-              <th></th>
-              <th>Reject</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -80,27 +75,45 @@ const BidRequests = () => {
                 <td>{bid?.userEmail}</td>
                 <td>{bid?.deadline}</td>
                 <td>${bid?.price}</td>
-                <td>{bid?.status}</td>
-                
-                {
-                  bid?.status==="rejected" || bid?.status==="accepted" ?  <td>-</td> :  <td><AiOutlineCheckCircle onClick={()=> handleAccept(bid?._id)}
-                  className="hover:cursor-pointer hover:text-green-600"
-                  size={25}
-                /></td>
-                }
-                <td>
-                 
-                </td>
-                {
-                  bid?.status=== "rejected" || bid?.status==="accepted" ? <td>-</td> : <td>
-                  <AiOutlineDelete
-                    onClick={() => handeReject(bid?._id)}
-                    className="hover:cursor-pointer hover:text-red-600"
-                    size={25}
-                  />
-                </td>
-                }
-                
+                {bid?.status !== "pending" ? (
+                  bid?.status === "rejected" ? (
+                    <td>rejected</td>
+                  ) : (
+                    <td>in progress</td>
+                  )
+                ) : (
+                  <td>pending</td>
+                )}
+
+                {bid?.status !== "pending" ? (
+                  bid?.status === "rejected" ? (
+                    <td>-</td>
+                  ) : (
+                    <td>bar bar</td>
+                  )
+                ) : (
+                  <td>
+                    <button
+                      onClick={() => handleAccept(bid?._id)}
+                      className="btn btn-xs bg-green-600 text-white"
+                    >
+                      accept
+                    </button>
+                  </td>
+                )}
+
+                {bid?.status === "rejected" || bid?.status === "accepted" ? (
+                  <td>-</td>
+                ) : (
+                  <td>
+                    <button
+                      onClick={() => handeReject(bid?._id)}
+                      className="btn btn-xs bg-red-600 text-white"
+                    >
+                      reject
+                    </button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

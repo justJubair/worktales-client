@@ -11,7 +11,11 @@ const MyBids = () => {
     const res = await axios.get(`/bids?userEmail=${user?.email}`);
     return res.data;
   };
-  const { data: bids, isLoading, refetch } = useQuery({
+  const {
+    data: bids,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["userBids"],
     queryFn: getUserBids,
   });
@@ -23,21 +27,19 @@ const MyBids = () => {
       </div>
     );
   }
-  if(!isLoading){
-    refetch()
+  if (!isLoading) {
+    refetch();
   }
-  const handleComplete =_id=>{
-    const status = {status: "complete"}
-    axios.patch(`/bids/${_id}`, status)
-    .then(res=>{
-      if(res.data.modifiedCount>0){
-        toast.success("Task completed")
-        refetch()
-       
+  const handleComplete = (_id) => {
+    const status = { status: "complete" };
+    axios.patch(`/bids/${_id}`, status).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        toast.success("Task completed");
+        refetch();
       }
-    })
-  }
- 
+    });
+  };
+
   return (
     <>
       <GeneralNav />
@@ -52,28 +54,44 @@ const MyBids = () => {
               <th>Deadline</th>
               <th>Status</th>
               <th>Action</th>
-            
             </tr>
           </thead>
           <tbody>
-          
             {bids?.map((bid) => (
               <tr key={bid._id}>
                 <th></th>
                 <td>{bid?.title}</td>
                 <td>{bid?.employerEmail}</td>
                 <td>{bid?.deadline}</td>
-               {
-                bid?.status !== "pending" ? (bid.status ==="rejected" ? <td>cancel</td> : <td>in progress</td>) : <td>pending</td>
-               }
-              
-            
-             {
-              bid?.status === "complete" ? <td>-</td> :  <td><button onClick={()=> handleComplete(bid?._id)} disabled={bid?.status === "accepted" ? false : true} className="btn btn-xs bg-green-600 text-white">complete</button></td>
-              
-             }
-              
-             <td></td>
+                {bid?.status !== "pending" ? (
+                  bid.status === "rejected" ? (
+                    <td>cancel</td>
+                  ) : bid.status === "accepted" ? (
+                    <td>in progress</td>
+                  ) : bid.status === "complete" ? (
+                    <td>completed</td>
+                  ) : (
+                    <td>-</td>
+                  )
+                ) : (
+                  <td>pending</td>
+                )}
+
+                {bid?.status === "complete" ? (
+                  <td>-</td>
+                ) : (
+                  <td>
+                    <button
+                      onClick={() => handleComplete(bid?._id)}
+                      disabled={bid?.status === "accepted" ? false : true}
+                      className="btn btn-xs bg-green-600 text-white"
+                    >
+                      complete
+                    </button>
+                  </td>
+                )}
+
+                <td></td>
               </tr>
             ))}
           </tbody>

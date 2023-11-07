@@ -9,7 +9,7 @@ const MyPostedJobs = () => {
   const axios = useAxios();
 
   const getEmployerJobs = async () => {
-    const res = await axios.get(`/jobs?employer_email=${user?.email}`);
+    const res = await axios.get(`/postedJobs?employer_email=${user?.email}`);
     return res;
   };
   const { data, isLoading, refetch } = useQuery({

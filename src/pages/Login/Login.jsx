@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import GeneralNav from "../../components/Navbar/GeneralNav";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -87,6 +88,7 @@ const Login = () => {
                   </button>
                 </div>
               </form>
+              <SocialLogin/>
               <div className="flex items-center justify-between px-4 pb-2">
                 <p>New to Worktales?</p>
                 <Link to="/register" className="btn btn-link">

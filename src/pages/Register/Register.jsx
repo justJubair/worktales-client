@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import auth from "../../config/firebase.config";
 import toast from "react-hot-toast";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Register = () => {
   const { signUp } = useAuth();
@@ -111,6 +112,7 @@ const Register = () => {
                   </button>
                 </div>
               </form>
+              <SocialLogin/>
               <div className="flex items-center justify-between px-4 pb-2">
                 <p>Already have an account?</p>
                 <Link to="/login" className="btn btn-link">

@@ -1,5 +1,5 @@
 import Navbar from "../../components/Navbar/Navbar";
-import bannerVideo from "../../assets/bannerAddJob.mp4";
+import bannerVideo from "../../assets/videos/bannerAddJob.mp4"
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import toast from "react-hot-toast";

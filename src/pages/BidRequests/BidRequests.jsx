@@ -32,7 +32,7 @@ const BidRequests = () => {
     refetch();
   }
   const handeReject = (_id) => {
-    const status = {status: "Rejected"}
+    const status = {status: "rejected"}
     axios.patch(`/bids/${_id}`, status).then((res) => {
       if(res.data.modifiedCount>0){
         toast.success("Bid Rejected")
@@ -42,6 +42,17 @@ const BidRequests = () => {
     });
    
   };
+  const handleAccept=(_id)=>{
+    const status = {status: "accepted"}
+    axios.patch(`/bids/${_id}`, status)
+    .then(res=>{
+      if(res.data.modifiedCount>0){
+        toast.success("Bid Accepted")
+        refetch()
+       
+      }
+    })
+  }
   return (
     <>
       <GeneralNav />
@@ -72,7 +83,7 @@ const BidRequests = () => {
                 <td>{bid?.status}</td>
                 
                 {
-                  bid?.status==="Rejected" ? <td>-</td> :  <td><AiOutlineCheckCircle
+                  bid?.status==="rejected" || bid?.status==="accepted" ?  <td>-</td> :  <td><AiOutlineCheckCircle onClick={()=> handleAccept(bid?._id)}
                   className="hover:cursor-pointer hover:text-green-600"
                   size={25}
                 /></td>
@@ -81,7 +92,7 @@ const BidRequests = () => {
                  
                 </td>
                 {
-                  bid?.status=== "Rejected" ? <td>-</td> : <td>
+                  bid?.status=== "rejected" || bid?.status==="accepted" ? <td>-</td> : <td>
                   <AiOutlineDelete
                     onClick={() => handeReject(bid?._id)}
                     className="hover:cursor-pointer hover:text-red-600"

@@ -25,7 +25,7 @@ const MyBids = () => {
   if(!isLoading){
     refetch()
   }
-
+ 
   return (
     <>
       <GeneralNav />
@@ -49,10 +49,10 @@ const MyBids = () => {
                 <td>{bid?.title}</td>
                 <td>{bid?.employerEmail}</td>
                 <td>{bid?.deadline}</td>
-                {
-                  bid?.status === "Rejected" ? <td>Cancel</td> : <td>pending</td>
-                }
-                {/* <td>{bid?.status === "Rejected" ?}</td> */}
+               {
+                bid.status === "rejected"
+               }
+              
               </tr>
             ))}
           </tbody>

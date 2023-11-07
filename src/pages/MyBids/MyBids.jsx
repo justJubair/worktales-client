@@ -49,7 +49,10 @@ const MyBids = () => {
                 <td>{bid?.title}</td>
                 <td>{bid?.employerEmail}</td>
                 <td>{bid?.deadline}</td>
-                <td>{bid?.status}</td>
+                {
+                  bid?.status === "Rejected" ? <td>Cancel</td> : <td>pending</td>
+                }
+                {/* <td>{bid?.status === "Rejected" ?}</td> */}
               </tr>
             ))}
           </tbody>

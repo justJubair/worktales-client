@@ -4,9 +4,8 @@ import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import { AiOutlineCheckCircle, AiOutlineDelete } from "react-icons/ai";
 import toast from "react-hot-toast";
-import { useState } from "react";
 const BidRequests = () => {
-    const [isButtonClicked, setIsButtonClicked] = useState(false)
+    
   const { user } = useAuth();
   const axios = useAxios();
   const getUserBids = async () => {
@@ -38,9 +37,10 @@ const BidRequests = () => {
       if(res.data.modifiedCount>0){
         toast.success("Bid Rejected")
         refetch()
-        setIsButtonClicked(true)
+       
       }
     });
+   
   };
   return (
     <>
@@ -48,7 +48,7 @@ const BidRequests = () => {
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
-          <thead>
+          <thead >
             <tr>
               <th></th>
               <th>Job Title</th>
@@ -57,6 +57,7 @@ const BidRequests = () => {
               <th>Price</th>
               <th>Status</th>
               <th>Accept</th>
+              <th></th>
               <th>Reject</th>
             </tr>
           </thead>
@@ -69,19 +70,26 @@ const BidRequests = () => {
                 <td>{bid?.deadline}</td>
                 <td>${bid?.price}</td>
                 <td>{bid?.status}</td>
+                
+                {
+                  bid?.status==="Rejected" ? <td>-</td> :  <td><AiOutlineCheckCircle
+                  className="hover:cursor-pointer hover:text-green-600"
+                  size={25}
+                /></td>
+                }
                 <td>
-                  <AiOutlineCheckCircle
-                    className="hover:cursor-pointer hover:text-green-600"
-                    size={25}
-                  />
+                 
                 </td>
-                <td>
+                {
+                  bid?.status=== "Rejected" ? <td>-</td> : <td>
                   <AiOutlineDelete
                     onClick={() => handeReject(bid?._id)}
                     className="hover:cursor-pointer hover:text-red-600"
                     size={25}
                   />
                 </td>
+                }
+                
               </tr>
             ))}
           </tbody>

@@ -1,24 +1,32 @@
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/animations/loginAnimation.json";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import GeneralNav from "../../components/Navbar/GeneralNav";
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation()
   const handleLogin = (e) => {
     e.preventDefault();
     const toastId = toast.loading("Logging in..");
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+   
     // login existing user
     login(email, password)
       .then((result) => {
         if (result.user) {
           toast.success("Logged in", { id: toastId });
-          navigate("/");
+          if(location.state?.redirectPath){
+            navigate(location.state?.redirectPath)
+          }
+          else{
+
+            navigate("/");
+          }
         }
       })
       .catch((error) => {

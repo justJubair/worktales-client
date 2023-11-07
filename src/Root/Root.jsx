@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import Footer from "../components/Footer/Footer";
 
 const Root = () => {
     const location = useLocation()
@@ -17,6 +18,7 @@ const Root = () => {
         <div>
         
            <Outlet/>
+           <Footer/>
         </div>
     )}
 export default Root;  

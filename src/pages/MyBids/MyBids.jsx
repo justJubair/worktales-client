@@ -53,7 +53,7 @@ const MyBids = () => {
   return (
     <>
       <GeneralNav />
-      <div className="max-w-screen-xl mx-auto px-4">
+      <div className="max-w-screen-xl mx-auto px-4 h-screen mt-10">
         <div className="text-end mb-4">
           <select
             onChange={handleSorting}

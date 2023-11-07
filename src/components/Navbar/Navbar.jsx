@@ -13,7 +13,7 @@ const Navbar = () => {
   };
   const navLinks = (
     <>
-      <li className="rounded-lg hover:bg-[#300b0b]">
+      <li className=" rounded-lg hover:bg-[#a22e2e]">
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -23,7 +23,7 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li className="rounded-lg hover:bg-[#300b0b]">
+      <li className="rounded-lg hover:bg-[#a22e2e]">
         <NavLink
           to="/addJob"
           className={({ isActive }) =>
@@ -33,7 +33,7 @@ const Navbar = () => {
           Add Job
         </NavLink>
       </li>
-      <li className="rounded-lg hover:bg-[#300b0b]">
+      <li className="rounded-lg hover:bg-[#a22e2e]">
         <NavLink
           to="/myPostedJobs"
           className={({ isActive }) =>
@@ -43,7 +43,7 @@ const Navbar = () => {
           My Posted Jobs
         </NavLink>
       </li>
-      <li className="rounded-lg hover:bg-[#300b0b]">
+      <li className="rounded-lg hover:bg-[#a22e2e]">
         <NavLink
           to="/myBids"
           className={({ isActive }) =>
@@ -53,7 +53,7 @@ const Navbar = () => {
           My Bids
         </NavLink>
       </li>
-      <li className="rounded-lg hover:bg-[#300b0b]">
+      <li className="rounded-lg hover:bg-[#a22e2e]">
         <NavLink
           to="/bidRequests"
           className={({ isActive }) =>
@@ -70,8 +70,6 @@ const Navbar = () => {
       <div className="z-[100] lg:hidden">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
-          {/* Page content here */}
-          {/* <label htmlFor="my-drawer" className="btn btn-primary drawer-button">Open drawer</label> */}
           <label
             htmlFor="my-drawer"
             tabIndex={0}

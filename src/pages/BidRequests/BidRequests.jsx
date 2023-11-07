@@ -52,7 +52,7 @@ const BidRequests = () => {
   return (
     <>
       <GeneralNav />
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto h-screen mt-10">
         <table className="table table-zebra">
           {/* head */}
           <thead>

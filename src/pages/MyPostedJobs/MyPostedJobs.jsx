@@ -28,7 +28,7 @@ const MyPostedJobs = () => {
   return (
     <>
       <GeneralNav />
-      <div className="max-w-screen-xl mx-auto grid gap-6 grid-cols-1 md:grid-cols-2 px-2 lg:px-0">
+      <div className="max-w-screen-xl mb-10 mx-auto grid gap-6 grid-cols-1 md:grid-cols-2 px-2 lg:px-0">
         {data.data?.map((job) => (
           <PostedJobCard key={job._id} refetch={refetch} job={job} />
         ))}

@@ -13,7 +13,7 @@ const GeneralNav = () => {
   }
     const navLinks = (
       <>
-        <li className="rounded-lg hover:bg-[#300b0b]">
+        <li className="rounded-lg hover:bg-[#a22e2e]">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -23,7 +23,7 @@ const GeneralNav = () => {
             Home
           </NavLink>
         </li>
-        <li className="rounded-lg hover:bg-[#300b0b]">
+        <li className="rounded-lg hover:bg-[#a22e2e]">
           <NavLink
             to="/addJob"
             className={({ isActive }) =>
@@ -33,7 +33,7 @@ const GeneralNav = () => {
             Add Job
           </NavLink>
         </li>
-        <li  className="rounded-lg hover:bg-[#300b0b]">
+        <li  className="rounded-lg hover:bg-[#a22e2e]">
           <NavLink
             to="/myPostedJobs"
             className={({ isActive }) =>
@@ -43,7 +43,7 @@ const GeneralNav = () => {
            My Posted Jobs
           </NavLink>
         </li>
-        <li  className="rounded-lg hover:bg-[#300b0b]">
+        <li  className="rounded-lg hover:bg-[#a22e2e]">
           <NavLink
             to="/myBids"
             className={({ isActive }) =>
@@ -53,7 +53,7 @@ const GeneralNav = () => {
             My Bids
           </NavLink>
         </li>
-        <li  className="rounded-lg hover:bg-[#300b0b]">
+        <li  className="rounded-lg hover:bg-[#a22e2e]">
           <NavLink
             to="/bidRequests"
             className={({ isActive }) =>
@@ -66,7 +66,7 @@ const GeneralNav = () => {
       </>
     );
     return (
-      <div className="  flex w-full items-center justify-between p-4 z-[100]">
+      <div className="bg-[#2b0909]  flex w-full items-center justify-between p-2 z-[100]">
         <div className="z-[100] lg:hidden">
           <input id="my-drawer" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">

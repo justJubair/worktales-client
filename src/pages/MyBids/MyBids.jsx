@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import GeneralNav from "../../components/Navbar/GeneralNav";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
+import toast from "react-hot-toast";
 
 const MyBids = () => {
   const { user } = useAuth();
@@ -25,11 +26,22 @@ const MyBids = () => {
   if(!isLoading){
     refetch()
   }
+  const handleComplete =_id=>{
+    const status = {status: "complete"}
+    axios.patch(`/bids/${_id}`, status)
+    .then(res=>{
+      if(res.data.modifiedCount>0){
+        toast.success("Task completed")
+        refetch()
+       
+      }
+    })
+  }
  
   return (
     <>
       <GeneralNav />
-      <div className="overflow-x-auto">
+      <div className="max-w-screen-xl mx-auto overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
           <thead>
@@ -39,6 +51,8 @@ const MyBids = () => {
               <th>Employer Email</th>
               <th>Deadline</th>
               <th>Status</th>
+              <th>Action</th>
+            
             </tr>
           </thead>
           <tbody>
@@ -50,9 +64,16 @@ const MyBids = () => {
                 <td>{bid?.employerEmail}</td>
                 <td>{bid?.deadline}</td>
                {
-                bid.status === "rejected"
+                bid?.status !== "pending" ? (bid.status ==="rejected" ? <td>cancel</td> : <td>in progress</td>) : <td>pending</td>
                }
               
+            
+             {
+              bid?.status === "complete" ? <td>-</td> :  <td><button onClick={()=> handleComplete(bid?._id)} disabled={bid?.status === "accepted" ? false : true} className="btn btn-xs bg-green-600 text-white">complete</button></td>
+              
+             }
+              
+             <td></td>
               </tr>
             ))}
           </tbody>

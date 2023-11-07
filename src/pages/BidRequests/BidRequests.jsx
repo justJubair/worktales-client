@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import GeneralNav from "../../components/Navbar/GeneralNav";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
-import { AiOutlineCheckCircle, AiOutlineDelete } from "react-icons/ai";
 import toast from "react-hot-toast";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar } from "react-step-progress-bar";
@@ -64,7 +63,7 @@ const BidRequests = () => {
               <th>Deadline</th>
               <th>Price</th>
               <th>Status</th>
-              <th>Action</th>
+              <th className="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -87,23 +86,32 @@ const BidRequests = () => {
 
                 {bid?.status !== "pending" ? (
                   bid?.status === "rejected" ? (
-                    <td>-</td>
+                    <td></td>
                   ) : (
-                    <td>bar bar</td>
+                    <td>
+                      <ProgressBar
+                        percent={bid?.status === "complete" ? 100 : 30}
+                        filledBackground="linear-gradient(to right,#ce6262, #4b1818 )"
+                      />
+                    </td>
                   )
                 ) : (
                   <td>
                     <button
                       onClick={() => handleAccept(bid?._id)}
-                      className="btn btn-xs bg-green-600 text-white"
+                      className="btn btn-xs bg-green-600  text-white"
                     >
                       accept
                     </button>
                   </td>
                 )}
 
-                {bid?.status === "rejected" || bid?.status === "accepted" ? (
-                  <td>-</td>
+                {bid?.status !== "pending" ? (
+                  bid?.status === "complete" || bid?.status === "rejected" ? (
+                    <td></td>
+                  ) : (
+                    <td></td>
+                  )
                 ) : (
                   <td>
                     <button

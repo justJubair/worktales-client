@@ -27,6 +27,10 @@ const JobDetails = () => {
     );
   }
 
+// Making the deadlin strict
+  const jobDeadlineInTime = new Date(job?.deadline).getTime()
+  const todaysDateInTime = Date.now()
+
   const handleBid = (e) => {
     e.preventDefault();
     const toastId = toast.loading("Adding your bid..");
@@ -145,7 +149,7 @@ const JobDetails = () => {
                 <button
                   type="submit"
                   className="btn text-white bg-[#4b1818] hover:bg-[#240707]"
-                  disabled={user?.email === job?.employer_email ? true : false}
+                  disabled={user?.email === job?.employer_email || jobDeadlineInTime < todaysDateInTime ? true : false}
                 >
                   Bid on this project
                 </button>

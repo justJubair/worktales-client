@@ -1,8 +1,12 @@
-# React + Vite
+# Worktales
+- [Live link of worktales](https://worktales-client.web.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+I've mainly discussed major five features of this website below
 
-Currently, two official plugins are available:
+- I've used framer motion and AOS on homepage and also dynamic progress bar on bid request page.
+- User can add a job and he or she can update or delete that job from my posted job route
+- The job deadline is strict by Date.now() function. So if the date is passed user can't bid on that specific job.
+- For user specific security I've used JWT token for every user and verifying the token on each and every private route.
+- Job owner can accept and reject bids from biders on bid request page and biders can see their bids on my bids page.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+

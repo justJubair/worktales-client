@@ -4,6 +4,8 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import GeneralNav from "../../components/Navbar/GeneralNav";
 import { useEffect, useState } from "react";
+import loadingAnimation from "../../assets/animations/loadingAnimation.json"
+import Lottie from "lottie-react";
 
 const UpdateJob = () => {
   const [job, setJob] = useState({})
@@ -24,7 +26,7 @@ const UpdateJob = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <span className="loading loading-bars loading-lg"></span>
+       <Lottie className="w-96" animationData={loadingAnimation}></Lottie>
       </div>
     );
   }

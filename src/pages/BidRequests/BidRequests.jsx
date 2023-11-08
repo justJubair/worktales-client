@@ -5,6 +5,8 @@ import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar } from "react-step-progress-bar";
+import loadingAnimation from "../../assets/animations/loadingAnimation.json"
+import Lottie from "lottie-react";
 const BidRequests = () => {
   const { user } = useAuth();
   const axios = useAxios();
@@ -24,7 +26,7 @@ const BidRequests = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <span className="loading loading-bars loading-lg"></span>
+        <Lottie className="w-96" animationData={loadingAnimation}></Lottie>
       </div>
     );
   }

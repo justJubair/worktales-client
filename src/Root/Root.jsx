@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation} from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -20,6 +20,7 @@ const Root = () => {
         }
     },[location.pathname, location.state])
     return(
+        
         <div>
         
            <Outlet/>

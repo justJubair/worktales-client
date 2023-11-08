@@ -3,7 +3,9 @@ import useAxios from "../../hooks/useAxios";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import useAuth from "../../hooks/useAuth";
+import loadingAnimation from "../../assets/animations/loadingAnimation.json"
 import toast from "react-hot-toast";
+import Lottie from "lottie-react";
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -22,7 +24,7 @@ const JobDetails = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <span className="loading loading-bars loading-lg"></span>
+        <Lottie animationData={loadingAnimation}></Lottie>
       </div>
     );
   }

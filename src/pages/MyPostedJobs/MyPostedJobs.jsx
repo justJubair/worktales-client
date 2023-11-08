@@ -5,6 +5,8 @@ import useAxios from "../../hooks/useAxios";
 import PostedJobCard from "./PostedJobCard";
 import bannerVideo from "../../assets/videos/bannerAddJob.mp4"
 import Navbar from "../../components/Navbar/Navbar";
+import loadingAnimation from "../../assets/animations/loadingAnimation.json"
+import Lottie from "lottie-react";
 const MyPostedJobs = () => {
   const { user } = useAuth();
   const axios = useAxios();
@@ -21,7 +23,7 @@ const MyPostedJobs = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <span className="loading loading-bars loading-lg"></span>
+      <Lottie className="w-96" animationData={loadingAnimation}></Lottie>
       </div>
     );
   }

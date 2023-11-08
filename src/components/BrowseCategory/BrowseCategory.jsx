@@ -4,19 +4,13 @@ import useAxios from "../../hooks/useAxios";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import SingleJob from "./SingleJob";
+import loadingAnimation from "../../assets/animations/loadingAnimation.json"
 import { useQuery } from "@tanstack/react-query";
+import Lottie from "lottie-react";
 
 const BrowseCategory = () => {
   const [category, setCategory] = useState("webDevelopment");
-  // const [jobs, setjobs] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true)
   const axios = useAxios();
-  // useEffect(() => {
-  //   axios.get(`/jobs?category=${category}`).then((res) => {
-  //     setjobs(res.data);
-  //     setIsLoading(false)
-  //   });
-  // }, [axios, category]);
   const getJobs = async()=>{
     const res = await axios.get(`/jobs?category=${category}`)
     return res
@@ -29,7 +23,7 @@ const BrowseCategory = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <span className="loading loading-bars loading-lg"></span>
+       <Lottie className="w-96" animationData={loadingAnimation} loop={true}></Lottie>
       </div>
     );
   }

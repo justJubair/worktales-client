@@ -3,7 +3,9 @@ import GeneralNav from "../../components/Navbar/GeneralNav";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
+import loadingAnimation from "../../assets/animations/loadingAnimation.json"
 import { useState } from "react";
+import Lottie from "lottie-react";
 const MyBids = () => {
   const { user } = useAuth();
   const [sortOrder, setSortOrder] = useState(null)
@@ -28,7 +30,7 @@ const MyBids = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <span className="loading loading-bars loading-lg"></span>
+       <Lottie animationData={loadingAnimation}></Lottie>
       </div>
     );
   }

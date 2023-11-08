@@ -108,7 +108,7 @@ const MyBids = () => {
                       <button
                         onClick={() => handleComplete(bid?._id)}
                         disabled={bid?.status === "accepted" ? false : true}
-                        className="btn btn-xs bg-green-600 text-white"
+                        className="btn btn-xs bg-green-600 text-white hover:bg-green-700"
                       >
                         complete
                       </button>

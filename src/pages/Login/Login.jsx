@@ -37,7 +37,7 @@ const Login = () => {
   return (
     <div>
       <GeneralNav />
-      <div className="hero">
+      <div className="hero my-20">
         <div>
           <h1 className="text-4xl font-bold text-center md:text-5xl md:mt-6 lg:my-8">
             Login <span className="text-[#4b1818]">now!</span>

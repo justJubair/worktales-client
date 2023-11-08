@@ -24,7 +24,7 @@ const JobDetails = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <Lottie animationData={loadingAnimation}></Lottie>
+        <Lottie className="w-96" animationData={loadingAnimation}></Lottie>
       </div>
     );
   }

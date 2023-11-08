@@ -1,5 +1,5 @@
 import useAxios from "../../hooks/useAxios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import GeneralNav from "../../components/Navbar/GeneralNav";
@@ -9,6 +9,7 @@ import Lottie from "lottie-react";
 
 const UpdateJob = () => {
   const [job, setJob] = useState({})
+  const navigate = useNavigate()
   const [category, setCategory] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const { id } = useParams();
@@ -63,6 +64,7 @@ const UpdateJob = () => {
     .then(res=>{
       if(res.data.modifiedCount> 0){
         toast.success("Job updated successfully")
+        navigate("/myPostedJobs")
       }
     })
     

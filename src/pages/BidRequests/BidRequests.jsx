@@ -54,7 +54,7 @@ const BidRequests = () => {
   return (
     <>
       <GeneralNav />
-      <div className="overflow-x-auto h-screen mt-10">
+      <div className="overflow-x-auto  mt-16 mb-32">
         <table className="table table-zebra">
           {/* head */}
           <thead>
@@ -94,7 +94,10 @@ const BidRequests = () => {
                       <ProgressBar
                         percent={bid?.status === "complete" ? 100 : 30}
                         filledBackground="linear-gradient(to right,#ce6262, #4b1818 )"
-                      />
+                        
+                      >
+                        
+                      </ProgressBar>
                     </td>
                   )
                 ) : (

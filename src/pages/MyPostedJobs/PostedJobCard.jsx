@@ -29,7 +29,7 @@ const PostedJobCard = ({ job, refetch }) => {
             if (res.data.deletedCount > 0) {
               swalWithBootstrapButtons.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "Your job has been deleted.",
                 icon: "success",
               });
               refetch();
@@ -41,7 +41,7 @@ const PostedJobCard = ({ job, refetch }) => {
         ) {
           swalWithBootstrapButtons.fire({
             title: "Cancelled",
-            text: "Your imaginary file is safe :)",
+            text: "Your job is safe :)",
             icon: "error",
           });
         }

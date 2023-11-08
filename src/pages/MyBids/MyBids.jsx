@@ -3,26 +3,30 @@ import GeneralNav from "../../components/Navbar/GeneralNav";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
-import loadingAnimation from "../../assets/animations/loadingAnimation.json"
+import loadingAnimation from "../../assets/animations/loadingAnimation.json";
 import { useState } from "react";
 import Lottie from "lottie-react";
 const MyBids = () => {
   const { user } = useAuth();
-  const [sortOrder, setSortOrder] = useState(null)
+  const [sortOrder, setSortOrder] = useState(null);
   // const [bids, setBids] = useState([]);
   const axios = useAxios();
   const getUserBids = async () => {
-    if(user?.email && sortOrder){
-      const res = await axios.get(`bids?userEmail=${user?.email}&sortField=status&sortOrder=${sortOrder}`)
-      return res.data
-    } else if(user?.email){
+    if (user?.email && sortOrder) {
+      const res = await axios.get(
+        `bids?userEmail=${user?.email}&sortField=status&sortOrder=${sortOrder}`
+      );
+      return res.data;
+    } else if (user?.email) {
       const res = await axios.get(`/bids?userEmail=${user?.email}`);
-      return res.data
+      return res.data;
     }
-    
-   
   };
-  const { data:bids, isLoading, refetch } = useQuery({
+  const {
+    data: bids,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["userBids"],
     queryFn: getUserBids,
   });
@@ -30,7 +34,7 @@ const MyBids = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-       <Lottie animationData={loadingAnimation}></Lottie>
+        <Lottie className="w-96" animationData={loadingAnimation}></Lottie>
       </div>
     );
   }
@@ -49,13 +53,13 @@ const MyBids = () => {
   };
 
   const handleSorting = (e) => {
-    setSortOrder(e.target.value)
+    setSortOrder(e.target.value);
   };
 
   return (
     <>
       <GeneralNav />
-      <div className="max-w-screen-xl mx-auto px-4 h-screen mt-10">
+      <div className="max-w-screen-xl mx-auto px-4  mt-16 mb-32">
         <div className="text-end mb-4">
           <select
             onChange={handleSorting}

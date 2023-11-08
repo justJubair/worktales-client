@@ -42,7 +42,7 @@ const Register = () => {
   return (
     <div>
       <GeneralNav />
-      <div className="hero">
+      <div className="hero my-20">
         <div>
           <h1 className="text-4xl font-bold text-center md:text-5xl md:mt-6 lg:my-8">
             Register <span className="text-[#4b1818]">now!</span>
@@ -108,7 +108,7 @@ const Register = () => {
                     type="submit"
                     className="btn bg-[#4b1818] text-white hover:bg-[#350b0b]"
                   >
-                    Login
+                    Register
                   </button>
                 </div>
               </form>

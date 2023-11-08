@@ -28,7 +28,7 @@ const SocialLogin = () => {
     }
     return(
         
-        <div onClick={handleGoogleLogin} className="flex items-center justify-center gap-4 mb-4">
+        <div onClick={handleGoogleLogin} className="flex items-center justify-center gap-4 mb-4 px-4">
             <div className="flex items-center gap-4 btn ">
              <p className="font-medium"> Login with </p>
             <AiOutlineGoogle size={25}/>

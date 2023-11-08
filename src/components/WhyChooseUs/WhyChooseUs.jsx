@@ -6,7 +6,7 @@ const WhyChooseUs = () => {
     <>
       {/* main div */}
       <div data-aos="fade-up"
-    data-aos-anchor-placement="top-bottom" className="max-w-screen-xl mb-28 mx-auto mt-24 px-4 gap-4 flex flex-col justify-between md:flex-row">
+    data-aos-anchor-placement="top-bottom" data-aos-duration="2000" className="max-w-screen-xl my-32 mx-auto px-4 gap-4 flex flex-col justify-between md:flex-row">
         <div className="flex-1">
           <Lottie className="w-full" animationData={animationwhy} loop={true}></Lottie>
           

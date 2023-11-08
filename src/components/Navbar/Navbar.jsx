@@ -133,7 +133,7 @@ const Navbar = () => {
         <div>
           <Link
             to="/login"
-            className="btn text-xl bg-[#4b1818] text-white hover:bg-[#300b0b]"
+            className="btn text-xl bg-[#4b1818] border-none text-white hover:bg-[#300b0b]"
           >
             <AiOutlineLogin />
           </Link>

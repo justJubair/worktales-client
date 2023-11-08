@@ -9,8 +9,8 @@ const Home = () => {
             <Navbar/>
             <Banner/>
             <BrowseCategory/>
-            <WhyChooseUs/>
             <OutTestimonials/>
+            <WhyChooseUs/>
         </div>
     )}
 export default Home;

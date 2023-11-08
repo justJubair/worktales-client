@@ -37,7 +37,7 @@ const BrowseCategory = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto mt-10 px-4">
-      <h2 className="text-center my-6 text-3xl md:text-4xl font-bold">Our <span className="text-[#7e3838]">Job</span> Categories</h2>
+      <h2 className="text-center my-6 text-3xl md:text-4xl font-extrabold">Our <span className="text-[#7e3838]">Job</span> Categories</h2>
       <Tabs className={"text-center"}>
         <TabList className={"mb-6"}  onClick={handleCategory}>
           <Tab>Web Development</Tab>

@@ -2,6 +2,7 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useAxios from "../../hooks/useAxios";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import SingleJob from "./SingleJob";
 
 const BrowseCategory = () => {
@@ -23,6 +24,7 @@ const BrowseCategory = () => {
       </div>
     );
   }
+ 
 
   const handleCategory = (e) => {
     const selectedCategory = e.target.textContent;
@@ -49,10 +51,13 @@ const BrowseCategory = () => {
           .fill(0)
           .map((_, idx) => (
             <TabPanel key={idx}>
-            <div className="grid gap-4 grid-cols-1 md:grid-cols-2 px-4 lg:px-0">
+            <div className="example-container grid gap-4 grid-cols-1 md:grid-cols-2 px-4 lg:px-0">
 
               {jobs?.map((job) => (
-                <SingleJob key={job._id} job={job} />
+                <motion.div whileHover={{scale: 0.9}} whileTap={{scale:1.1}} transition={{duration: 0.3}} key={job._id}>
+
+                  <SingleJob  job={job} />
+                </motion.div>
               ))}
             </div>
             </TabPanel>

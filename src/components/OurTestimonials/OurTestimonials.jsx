@@ -19,7 +19,8 @@ const OurTestimonials = () => {
     queryFn: getTestimonials,
   });
   return (
-    <div className="max-w-screen-xl mx-auto px-4 mt-20 lg:mt-32 md:gap-6 lg:gap-4 flex flex-col justify-center items-start md:flex-row">
+    <div data-aos="fade-up"
+    data-aos-anchor-placement="top-bottom" className="max-w-screen-xl mx-auto px-4 mt-20 lg:mt-32 md:gap-6 lg:gap-4 flex flex-col justify-center items-start md:flex-row">
       <div className="w-full md:w-1/2">
         <BiSolidQuoteAltLeft size={50} />
         <h1 className="text-4xl leading-tight w-full font-extrabold text-[#4b1818] md:text-5xl">

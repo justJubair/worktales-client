@@ -8,7 +8,7 @@ import "swiper/css/effect-cards";
 import useAxios from "../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 
-const OutTestimonials = () => {
+const OurTestimonials = () => {
   const axios = useAxios();
   const getTestimonials = async () => {
     const res = await axios.get("/testimonials");
@@ -65,4 +65,4 @@ const OutTestimonials = () => {
     </div>
   );
 };
-export default OutTestimonials;
+export default OurTestimonials;

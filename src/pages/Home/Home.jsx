@@ -1,6 +1,7 @@
 import Banner from "../../components/Banner/Banner";
 import Navbar from "../../components/Navbar/Navbar";
-import OutTestimonials from "../../components/OurTestimonials/OutTestimonials";
+import OurTestimonials from "../../components/OurTestimonials/OurTestimonials";
+
 import WhyChooseUs from "../../components/WhyChooseUs/WhyChooseUs";
 import BrowseCategory from "../../components/browseCategory/browseCategory";
 const Home = () => {
@@ -9,7 +10,7 @@ const Home = () => {
             <Navbar/>
             <Banner/>
             <BrowseCategory/>
-            <OutTestimonials/>
+            <OurTestimonials/>
             <WhyChooseUs/>
         </div>
     )}

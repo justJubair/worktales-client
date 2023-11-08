@@ -36,14 +36,22 @@ const AuthProvider = ({children}) => {
             setIsLoading(false)
             const userEmail = currentUser?.email || user?.email
             const loggedUser = {email: userEmail}
-            
+            console.log(currentUser)
             if(currentUser){
                 axios.post("/jwt", loggedUser)
-                .then()
+                .then(res=>{
+                    console.log(res.data)
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
             } else{
                 axios.post("/logout", loggedUser)
                 .then(result =>{
                     console.log(result.data)
+                })
+                .catch(error=>{
+                    console.error(error)
                 })
             }
             return ()=>{

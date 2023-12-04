@@ -6,7 +6,7 @@ const Banner = () => {
     <div className="h-screen w-full">
       <img
         className="h-full object-cover w-full"
-        src="https://i.ibb.co/Ytq7sj6/map-lying-wooden-table.jpg"
+        src="https://img.freepik.com/free-photo/business-people-working-laptop_53876-20853.jpg?w=826&t=st=1701713623~exp=1701714223~hmac=05306659958e38db7097ce73f5810b4c7e1929de1806967c468fd9284c7c4586"
         alt=""
       />
       {/* overlay */}

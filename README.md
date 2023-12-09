@@ -10,6 +10,11 @@ I've mainly discussed major five features of this website below
 - Job owner can accept and reject bids from biders on bid request page and biders can see their bids on my bids page.
 
 ### Run this project locally
+First clone this project on your local machine
+```
+git clone https://github.com/justJubair/worktales-client.git
+```
+Install all the dependencies
 ```
 npm install
 ```

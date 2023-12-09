@@ -9,4 +9,23 @@ I've mainly discussed major five features of this website below
 - For user specific security I've used JWT token for every user and verifying the token on each and every private route.
 - Job owner can accept and reject bids from biders on bid request page and biders can see their bids on my bids page.
 
+### Run this project locally
+```
+npm install
+```
+Create a project on firebase and change .env.local file with your own credentials.
+```
+VITE_APIKEY=Your_Credentials
+VITE_AUTHDOMAIN=Your_Credentials
+VITE_PROJECTID=Your_Credentials
+VITE_STORAGEBUCKET=Your_Credentials
+VITE_MESSAGINGSENDERID=Your_Credentials
+VITE_APPID=Your_Credentials
+```
+Finaly, run the project on development server.
+```
+npm run dev
+```
+
+
 

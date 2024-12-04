@@ -4,8 +4,8 @@
 
  Survytics is a user-friendly survey creation platform, allowing surveyors to effortlessly design surveys with yes/no questions and allowing users to vote, like, dislike, comment and report on particular surveys. 
 
-- [client site](https://survytics-client.web.app)
-- [server site](https://survytics-server.vercel.app/health)
+- [client site](https://worktales-client.web.app)
+- [server site](https://worktales-server.vercel.app/)
 
 ## Table of Contents
 
